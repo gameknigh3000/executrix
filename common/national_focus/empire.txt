@@ -889,7 +889,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = imp_focus_assess_the_fuel_tanks
+		id = imp_assess_the_fuel_tanks
 		icon = GFX_focus_assess_the_fuel_tanks
 		cost = 3
 		x = 0
@@ -1023,7 +1023,7 @@ focus_tree = {
 		y = 5
 		relative_position_id = imp_vaders_fist
 		prerequisite = {
-			focus = imp_focus_assess_the_fuel_tanks
+			focus = imp_assess_the_fuel_tanks
 		}
 		prerequisite = {
 			focus = imp_doctrinal_reforms
@@ -1183,38 +1183,10 @@ focus_tree = {
 	###INTERNATIONAL TREE###
 
 	focus = {
-		id = imp_approach_the_germans
-		icon = GFX_unique_tech_10_medium
-		cost = x
-		x = 13
-		y = 0
-		available = {
-			has_completed_focus = imp_the_role_of_vader
-			has_country_leader = darth_vader
-		}
-		completion_reward = { }
-	}
-
-
-	focus = {
-		id = imp_reach_out_to_the_smaller_powers
-		icon = GFX_unique_tech_10_medium
-		cost = x
-		x = 9
-		y = 0
-		available = {
-			has_completed_focus = imp_the_role_of_vader
-			has_country_leader = tarkin
-		}
-		completion_reward = { }
-	}
-
-
-	focus = {
 		id = imp_reach_out_to_the_balkan_powers
 		icon = GFX_unique_tech_10_medium
 		cost = 6
-		x = 18
+		x = 16
 		y = 0
 		available = {
 			has_idea = imp_moff_tarkin
@@ -1223,119 +1195,56 @@ focus_tree = {
 	}
 
 	focus = {
-		id = imp_make_a_deal_with_turkey
+		id = imp_claim_turkish_territory
 		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = -3
+		cost = 6
+		x = -2
 		y = 1
 		relative_position_id = imp_reach_out_to_the_balkan_powers
-		mutually_exclusive = {
-			focus = imp_prepare_the_isb
-		}
 		prerequisite = {
 			focus = imp_reach_out_to_the_balkan_powers
 		}
-		completion_reward = {
-			TUR = {
-				country_event = {
-					id = imperial_move.1
-					days = 1
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = imp_start_bribing_local_officials
-		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = 0
-		y = 1
-		relative_position_id = imp_make_a_deal_with_turkey
-		prerequisite = {
-			focus = imp_make_a_deal_with_turkey
+		mutually_exclusive = {
+			focus = imp_reach_out_to_turkey
 		}
 		completion_reward = { }
 	}
 
 	focus = {
-		id = imp_request_control_over_more_resources
+		id = imp_build_up_the_levant
 		icon = GFX_unique_tech_10_medium
 		cost = 4
 		x = 0
 		y = 1
-		relative_position_id = imp_start_bribing_local_officials
+		relative_position_id = imp_claim_turkish_territory
 		prerequisite = {
-			focus = imp_start_bribing_local_officials
+			focus = imp_claim_turkish_territory
 		}
 		completion_reward = { }
 	}
 
-
 	focus = {
-		id = imp_prepare_the_isb
+		id = imp_assign_new_governors
 		icon = GFX_unique_tech_10_medium
-		cost = 4
+		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = imp_reach_out_to_the_balkan_powers
-		mutually_exclusive = {
-			focus = imp_make_a_deal_with_turkey
-		}
+		relative_position_id = imp_build_up_the_levant
 		prerequisite = {
-			focus = imp_reach_out_to_the_balkan_powers
+			focus = imp_build_up_the_levant
 		}
 		completion_reward = { }
 	}
 
 	focus = {
-		id = imp_look_for_local_puppets
+		id = imp_reward_romania
 		icon = GFX_unique_tech_10_medium
 		cost = 4
-		x = 0
+		x = -1
 		y = 1
-		relative_position_id = imp_prepare_the_isb
+		relative_position_id = imp_build_up_the_levant
 		prerequisite = {
-			focus = imp_prepare_the_isb
-		}
-		completion_reward = {
-			add_political_power = 100
-		}
-	}
-
-	focus = {
-		id = imp_seize_control_over_the_border_areas
-		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = 0
-		y = 1
-		relative_position_id = imp_look_for_local_puppets
-		prerequisite = {
-			focus = imp_look_for_local_puppets
-		}
-		completion_reward = {
-			TUR = {
-			 country_event ={
-				id = imperial_move.1
-				days = 1
-			 } 
-			}
-
-		}
-	}
-
-	focus = {
-		id = imp_declare_turkey_a_protectorate
-		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = 1
-		y = 1
-		relative_position_id = imp_seize_control_over_the_border_areas
-		prerequisite = {
-			focus = imp_seize_control_over_the_border_areas
-		}
-		mutually_exclusive = {
-			focus = imp_begin_intergrating_turkey
+			focus = imp_build_up_the_levant
 		}
 		completion_reward = { }
 	}
@@ -1343,212 +1252,102 @@ focus_tree = {
 	focus = {
 		id = imp_begin_intergrating_turkey
 		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = -1
-		y = 1
-		relative_position_id = imp_seize_control_over_the_border_areas
-		prerequisite = {
-			focus = imp_seize_control_over_the_border_areas
-		}
-		mutually_exclusive = {
-			focus = imp_declare_turkey_a_protectorate
-		}
-		completion_reward = {
-			unlock_decision_tooltip = IMP_turkey_core_decisions
-		 }
-	}
-
-	focus = {
-		id = imp_turn_to_the_hills
-		icon = GFX_unique_tech_10_medium
-		cost = 4
+		cost = 10
 		x = 0
 		y = 2
-		relative_position_id = imp_seize_control_over_the_border_areas
+		relative_position_id = imp_build_up_the_levant
 		prerequisite = {
-			focus = imp_begin_intergrating_turkey
-			focus = imp_declare_turkey_a_protectorate
+			focus = imp_reward_romania
 		}
-		completion_reward = {
-			create_wargoal = {
-				target = AFG
-				type = annex_everything
-			}
-		 }
-	}
-
-
-	focus = {
-		id = imp_start_expanding_the_mechanized_core
-		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = -2
-		y = 1
-		relative_position_id = imp_train_local_officers
 		prerequisite = {
-			focus = imp_train_local_officers
+			focus = imp_assign_new_governors
 		}
 		completion_reward = { }
 	}
 
 	focus = {
-		id = imp_keep_the_current_stormtrooper
+		id = imp_reach_out_to_turkey
 		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = -3
+		cost = 6
+		x = 2
 		y = 1
-		relative_position_id = imp_start_expanding_the_mechanized_core
+		relative_position_id = imp_reach_out_to_the_balkan_powers
 		prerequisite = {
-			focus = imp_start_expanding_the_mechanized_core
+			focus = imp_reach_out_to_the_balkan_powers
 		}
 		mutually_exclusive = {
-			focus = imp_specialise_the_storm_troopers
+			focus = imp_claim_turkish_territory
 		}
 		completion_reward = { }
 	}
-
+    
 	focus = {
-		id = imp_specialise_the_storm_troopers
+		id = imp_improve_romanian_forces
 		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = 3
-		y = 1
-		relative_position_id = imp_start_expanding_the_mechanized_core
-		prerequisite = {
-			focus = imp_start_expanding_the_mechanized_core
-		}
-		mutually_exclusive = {
-			focus = imp_keep_the_current_stormtrooper
-		}
-		completion_reward = { }
-	}
-
-	focus = {
-		id = imp_improve_landing_ships
-		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = -1
-		y = 1
-		relative_position_id = imp_keep_the_current_stormtrooper
-		prerequisite = {
-			focus = imp_keep_the_current_stormtrooper
-		}
-		
-		completion_reward = { }
-	}
-
-	focus = {
-		id = imp_the_imperial_logistics_core
-		icon = GFX_unique_tech_10_medium
-		cost = 4
+		cost = 5
 		x = 0
 		y = 1
-		relative_position_id = imp_improve_landing_ships
+		relative_position_id = imp_reach_out_to_turkey
 		prerequisite = {
-			focus = imp_improve_landing_ships
+			focus = imp_reach_out_to_turkey
 		}
 		completion_reward = { }
 	}
 
 	focus = {
-		id = imp_focus_on_hostile_enviroment_training
+		id = imp_begin_propaganda_campaigns
+		icon = GFX_unique_tech_10_medium
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = imp_improve_romanian_forces
+		prerequisite = {
+			focus = imp_improve_romanian_forces
+		}
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_turkish_geological_surveys
 		icon = GFX_unique_tech_10_medium
 		cost = 4
 		x = 1
 		y = 1
-		relative_position_id = imp_keep_the_current_stormtrooper
+		relative_position_id = imp_improve_romanian_forces
 		prerequisite = {
-			focus = imp_keep_the_current_stormtrooper
+			focus = imp_improve_romanian_forces
 		}
 		completion_reward = { }
 	}
 
 	focus = {
-		id = imp_improve_policing_skills
-		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = 0
-		y = 1
-		relative_position_id = imp_focus_on_hostile_enviroment_training
-		prerequisite = {
-			focus = imp_focus_on_hostile_enviroment_training
-		}
-		completion_reward = { }
-	}
-
-	focus = {
-		id = imp_lessons_of_earth
+		id = imp_begin_establshing_a_shadow_admin
 		icon = GFX_unique_tech_10_medium
 		cost = 5
 		x = 0
-		y = 3
-		relative_position_id = imp_keep_the_current_stormtrooper
+		y = 2
+		relative_position_id = imp_improve_romanian_forces
 		prerequisite = {
-			focus = imp_the_imperial_logistics_core
-			focus = imp_improve_policing_skills
+			focus = imp_begin_propaganda_campaigns
+			focus = imp_turkish_geological_surveys
 		}
 		completion_reward = { }
 	}
-
+    
 	focus = {
-		id = imp_imperial_para_core
+		id = imp_establish_the_planning_office
 		icon = GFX_unique_tech_10_medium
 		cost = 4
 		x = 0
-		y = 1
-		relative_position_id = imp_specialise_the_storm_troopers
+		y = 5
+		relative_position_id = imp_reach_out_to_the_balkan_powers
 		prerequisite = {
-			focus = imp_specialise_the_storm_troopers
-		}
-		mutually_exclusive = {
-			focus = imp_imperial_marines
-		}
-		mutually_exclusive = {
-			focus = imp_imperial_mountaineer_core
+			focus = imp_begin_establshing_a_shadow_admin
+			focus = imp_begin_intergrating_turkey
 		}
 		completion_reward = { }
 	}
-
-	focus = {
-		id = imp_imperial_marines
-		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = 2
-		y = 1
-		relative_position_id = imp_specialise_the_storm_troopers
-		prerequisite = {
-			focus = imp_specialise_the_storm_troopers
-		}
-		mutually_exclusive = {
-			focus = imp_imperial_mountaineer_core
-		}
-		mutually_exclusive = {
-			focus = imp_imperial_para_core
-		}
-		completion_reward = { }
-	}
-
-	focus = {
-		id = imp_imperial_mountaineer_core
-		icon = GFX_unique_tech_10_medium
-		cost = 4
-		x = -2
-		y = 1
-		relative_position_id = imp_specialise_the_storm_troopers
-		prerequisite = {
-			focus = imp_specialise_the_storm_troopers
-		}
-		mutually_exclusive = {
-			focus = imp_imperial_para_core
-		}
-
-		mutually_exclusive = {
-			focus = imp_imperial_marines
-		}
-
-		completion_reward = { }
-	}
-
+	
 	##MILITARY TREE##
 	focus = {
 		id = imp_reorganise_the_officer_core
@@ -1605,7 +1404,7 @@ focus_tree = {
 			focus = imp_lessons_from_the_desert
 		}
 		completion_reward = {
-			591 = {
+			656 = {
 				add_building_construction = {
 					type = dockyard
 					level = 1
@@ -1665,6 +1464,248 @@ focus_tree = {
 		relative_position_id = imp_adapting_to_earth_tactics
 		prerequisite = {
 			focus = imp_adapting_to_earth_tactics
+		}
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_start_expanding_the_mechanized_core
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = -2
+		y = 1
+		relative_position_id = imp_train_local_officers
+		prerequisite = {
+			focus = imp_train_local_officers
+		}
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_keep_the_current_stormtrooper
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = -3
+		y = 1
+		relative_position_id = imp_start_expanding_the_mechanized_core
+		prerequisite = {
+			focus = imp_start_expanding_the_mechanized_core
+		}
+		mutually_exclusive = {
+			focus = imp_specialise_the_storm_troopers
+		}
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_specialise_the_storm_troopers
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 3
+		y = 1
+		relative_position_id = imp_start_expanding_the_mechanized_core
+		prerequisite = {
+			focus = imp_start_expanding_the_mechanized_core
+		}
+		mutually_exclusive = {
+			focus = imp_keep_the_current_stormtrooper
+		}
+		completion_reward = {
+			add_ideas = imp_specialised_storm_troopers
+		 }
+	}
+
+	focus = {
+		id = imp_improve_landing_ships
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = -1
+		y = 1
+		relative_position_id = imp_keep_the_current_stormtrooper
+		prerequisite = {
+			focus = imp_keep_the_current_stormtrooper
+		}
+		
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_the_imperial_logistics_core
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 0
+		y = 1
+		relative_position_id = imp_improve_landing_ships
+		prerequisite = {
+			focus = imp_improve_landing_ships
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = logistics
+				uses = 1
+				bonus = 0.75
+				category = logistics_tech
+			}
+		 }
+	}
+
+	focus = {
+		id = imp_focus_on_hostile_enviroment_training
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 1
+		y = 1
+		relative_position_id = imp_keep_the_current_stormtrooper
+		prerequisite = {
+			focus = imp_keep_the_current_stormtrooper
+		}
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_improve_policing_skills
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 0
+		y = 1
+		relative_position_id = imp_focus_on_hostile_enviroment_training
+		prerequisite = {
+			focus = imp_focus_on_hostile_enviroment_training
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = policing
+				uses = 1
+				bonus = 0.75
+				category = military_police_tech
+			}
+		 }
+	}
+
+	focus = {
+		id = imp_lessons_of_earth
+		icon = GFX_unique_tech_10_medium
+		cost = 5
+		x = 0
+		y = 3
+		relative_position_id = imp_keep_the_current_stormtrooper
+		prerequisite = {
+			focus = imp_the_imperial_logistics_core
+			focus = imp_improve_policing_skills
+		}
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_imperial_para_core
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 0
+		y = 1
+		relative_position_id = imp_specialise_the_storm_troopers
+		prerequisite = {
+			focus = imp_specialise_the_storm_troopers
+		}
+		mutually_exclusive = {
+			focus = imp_imperial_marines
+		}
+		mutually_exclusive = {
+			focus = imp_imperial_mountaineer_core
+		}
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_new_transports
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 0
+		y = 1
+		relative_position_id = imp_imperial_para_core
+		prerequisite = {
+			focus = imp_imperial_para_core
+		}
+		completion_reward = { 
+			add_tech_bonus = {
+				name = tranports
+				uses = 1
+				category = para_tech
+				bonus = 0.75
+			}
+		}
+	}
+
+	focus = {
+		id = imp_imperial_marines
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 2
+		y = 1
+		relative_position_id = imp_specialise_the_storm_troopers
+		prerequisite = {
+			focus = imp_specialise_the_storm_troopers
+		}
+		mutually_exclusive = {
+			focus = imp_imperial_mountaineer_core
+		}
+		mutually_exclusive = {
+			focus = imp_imperial_para_core
+		}
+		completion_reward = { }
+	}
+
+	focus = {
+		id = imp_landing_efforts
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 0
+		y = 1
+		relative_position_id = imp_imperial_marines
+		prerequisite = {
+			focus = imp_imperial_marines
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = landing
+				uses = 1
+				bonus = 1
+				category = marine_tech
+			}
+		 }
+	}
+
+	focus = {
+		id = imp_imperial_mountaineer_core
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = -2
+		y = 1
+		relative_position_id = imp_specialise_the_storm_troopers
+		prerequisite = {
+			focus = imp_specialise_the_storm_troopers
+		}
+		mutually_exclusive = {
+			focus = imp_imperial_para_core
+		}
+
+		mutually_exclusive = {
+			focus = imp_imperial_marines
+		}
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = imp_extend_training
+		icon = GFX_unique_tech_10_medium
+		cost = 4
+		x = 0
+		y = 1
+		relative_position_id = imp_imperial_mountaineer_core
+		prerequisite = {
+			focus = imp_imperial_mountaineer_core
 		}
 		completion_reward = { }
 	}
