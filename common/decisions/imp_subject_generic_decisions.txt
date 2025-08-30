@@ -1,0 +1,49 @@
+
+IMP_Subject_decisions = {
+    imp_sub_rd_grant = {
+      cost = 75
+      available = {
+        has_country_flag = starwarstech_unlock
+        NOT = { has_country_flag = imp_sub_rd_cd }
+      }
+      visible = { has_country_flag = starwarstech_unlock }
+      complete_effect = {
+        add_timed_idea = { idea = SUB_rd_grant_idea   
+        days = 180 }
+        add_timed_idea = { idea = SUB_rd_payment_idea 
+        days = 180 }
+        hidden_effect = {
+        overlord = { add_political_power = 25 add_war_support = 0.01 }   
+        }
+        set_country_flag = imp_sub_rd_cd
+        country_event = { id = IMP_SUBJECT.21 days = 180 }
+      }
+      ai_will_do = { factor = 0.15 }
+    }
+
+    imp_sub_request_equipment = {
+
+      cost = 50
+      available = {
+        NOT = { has_country_flag = imp_sub_req_eq_cd }
+      }
+      visible = { overlord = { tag = IMP } }
+      complete_effect = {
+        add_equipment_to_stockpile = { type = infantry_equipment amount = 5000 producer = overlord }
+        add_equipment_to_stockpile = { type = support_equipment  amount = 500  producer = overlord }
+        set_country_flag = imp_sub_req_eq_cd
+        country_event = { id = IMP_SUBJECT.20 days = 180 }
+      }
+      ai_will_do = { factor = 0.05 }
+    }
+
+    imp_sub_standardize_production = {
+      cost = 35
+      available = { has_country_flag = starwarstech_unlock }
+      visible  = { has_country_flag = starwarstech_unlock }
+      complete_effect = {
+        add_timed_idea = { idea = SUB_quality_standards_idea days = 180 }
+      }
+      ai_will_do = { factor = 0.25 }
+    }
+}

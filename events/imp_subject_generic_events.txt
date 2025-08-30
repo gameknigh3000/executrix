@@ -1,0 +1,52 @@
+namespace = IMP_SUBJECT
+
+country_event = {
+    id = IMP_SUBJECT.10
+    title = IMP_SUBJECT.10.t
+    desc  = IMP_SUBJECT.10.d
+    picture = GFX_report_event_factory_bombed
+    is_triggered_only = yes
+    immediate = {
+        random_owned_controlled_state = {
+            limit = { is_core_of = ROOT }
+            random_list = {
+                30 = { add_resource = { type = steel     amount = 4 } }
+                25 = { add_resource = { type = aluminium amount = 3 } }
+                20 = { add_resource = { type = oil       amount = 2 } }
+                15 = { add_resource = { type = rubber    amount = 3 } }
+                7  = { add_resource = { type = tungsten  amount = 2 } }
+                3  = { add_resource = { type = chromium  amount = 1 } }
+            }
+        }
+    }
+    option = { name = IMP_SUBJECT.10.a }
+}
+
+country_event = {
+    id = IMP_SUBJECT.20
+    title = IMP_SUBJECT.20.t
+    is_triggered_only = yes
+    immediate = { clr_country_flag = imp_sub_req_eq_cd }
+    option = { name = OK }
+}
+
+country_event = {
+    id = IMP_SUBJECT.21
+    title = IMP_SUBJECT.21.t
+    is_triggered_only = yes
+    immediate = { clr_country_flag = imp_sub_rd_cd }
+    option = { name = OK }
+}
+
+
+# Clear initial cooldown for new subjects
+country_event = {
+  id = IMP_SUBJECT.22
+  title = IMP_SUBJECT.22.t
+  is_triggered_only = yes
+  immediate = {
+    clr_country_flag = imp_sub_req_eq_cd
+    clr_country_flag = imp_sub_init_cd
+  }
+  option = { name = OK }
+}

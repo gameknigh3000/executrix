@@ -1,0 +1,24 @@
+
+on_actions = {
+  on_game_start = {
+    effect = {
+      if = { limit = { exists = IMP } IMP = { set_country_flag = imp_is_overlord } }
+    }
+  }
+
+  # Initial equipment-request cooldown for new IMP subjects
+  on_daily_pulse = {
+    effect = {
+      every_country = {
+        limit = {
+          is_subject = yes
+          overlord = { tag = IMP }
+          NOT = { has_country_flag = imp_sub_init_cd }
+        }
+        set_country_flag = imp_sub_req_eq_cd          # Start on cooldown
+        set_country_flag = imp_sub_init_cd            # Mark initialized so we don't reapply
+        country_event = { id = IMP_SUBJECT.22 days = 60 } # Auto-clear initial cooldown after 60 days
+      }
+    }
+  }
+}

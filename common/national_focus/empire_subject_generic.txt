@@ -1,0 +1,388 @@
+# ==============================================
+# File: common/national_focus/empire_subject_generic.txt
+# ==============================================
+focus_tree = {
+    id = SUBJUGATED_STATE_focus
+
+    country = {
+        factor = 1
+        modifier = {
+			add = 10
+
+			OR = {
+				is_puppet_of = IMP
+			}
+		}
+    }
+
+    default = no
+
+    available = {
+        is_subject_of = IMP
+    }
+
+# ============================================================
+    # ROOT – OPENING PLEDGE & CONTROL
+    # ============================================================
+    focus = {
+        id = SUB_pledge_loyalty
+        icon = GFX_goal_generic_political_reform
+        x = 20
+        y = 0
+        cost = 5
+        available = { is_subject = yes }
+        search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+        completion_reward = {
+            add_political_power = 75
+            add_stability = 0.05
+            add_opinion_modifier = { target = overlord modifier = positive_opinion }
+            add_country_leader_trait = appeaser
+        }
+    }
+
+    # ============================================================
+    # BRANCH A – COMPLIANCE & GOVERNANCE
+    # ============================================================
+    focus = {
+        id = SUB_imperial_advisors
+        icon = GFX_goal_generic_government
+        prerequisite = { focus = SUB_pledge_loyalty }
+        x = 2
+        y = 1
+        cost = 7
+        relative_position_id = SUB_pledge_loyalty
+        search_filters = { FOCUS_FILTER_POLITICAL }
+        completion_reward = {
+            add_political_power = 50
+            add_stability = -0.02
+            add_ideas = SUB_imperial_advisors_idea
+        }
+    }
+
+    focus = {
+        id = SUB_tarkin_doctrine
+        icon = GFX_goal_generic_intelligence
+        prerequisite = { focus = SUB_imperial_advisors }
+        x = -1
+        y = 1
+        cost = 7
+        relative_position_id = SUB_imperial_advisors
+        completion_reward = {
+            add_political_power = 50
+            add_ideas = SUB_tarkin_doctrine_idea
+        }
+    }
+
+    focus = {
+        id = SUB_provincial_administration
+        icon = GFX_goal_generic_construct_civ_factory
+        prerequisite = { focus = SUB_imperial_advisors }
+        x = 1
+        y = 1
+        cost = 7
+        relative_position_id = SUB_imperial_advisors
+        search_filters = { FOCUS_FILTER_INDUSTRY }
+        completion_reward = {
+            add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            add_stability = 0.02
+        }
+    }
+
+    focus = {
+        id = SUB_sector_governors
+        icon = GFX_goal_generic_political_pressure
+        prerequisite = { focus = SUB_tarkin_doctrine focus = SUB_provincial_administration }
+        x = 0
+        y = 2
+        cost = 8
+        relative_position_id = SUB_imperial_advisors
+        completion_reward = {
+            add_stability = 0.03
+            add_political_power = 50
+            add_autonomy_ratio = -0.02
+        }
+    }
+
+    # ============================================================
+    # BRANCH B – IMPERIAL WAR MACHINE & LOGISTICS
+    # ============================================================
+    focus = {
+        id = SUB_supply_war_machine
+        icon = GFX_goal_generic_construct_mil_factory
+        prerequisite = { focus = SUB_pledge_loyalty }
+        x = 10
+        y = 1.5
+        cost = 7
+        relative_position_id = SUB_pledge_loyalty
+        search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_WAR_SUPPORT }
+        completion_reward = {
+            add_war_support = 0.03
+            add_political_power = 25
+            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            add_equipment_to_stockpile = { type = infantry_equipment amount = 2000 producer = overlord }
+        }
+    }
+
+    focus = {
+        id = SUB_vaders_shadow
+        icon = GFX_goal_generic_fear
+        prerequisite = { focus = SUB_supply_war_machine }
+        x = 0
+        y = 1
+        cost = 7
+        relative_position_id = SUB_supply_war_machine
+        completion_reward = {
+            add_stability = -0.03
+            add_war_support = 0.05
+            create_unit = {
+                division_name = "Imperial Garrison"
+                location = 0
+                force_equipment_variants = yes
+                division_template = {
+                    name = "Garrison"
+                    regiments = {
+                        infantry = { x = 0 y = 0 }
+                        infantry = { x = 1 y = 0 }
+                        infantry = { x = 2 y = 0 }
+                        infantry = { x = 0 y = 1 }
+                        infantry = { x = 1 y = 1 }
+                    }
+                }
+                owner = overlord
+            }
+        }
+    }
+
+    focus = {
+        id = SUB_sector_logistics
+        icon = GFX_goal_generic_occupy_states
+        prerequisite = { focus = SUB_vaders_shadow }
+        x = 0
+        y = 2
+        cost = 8
+        relative_position_id = SUB_supply_war_machine
+        completion_reward = {
+            add_ideas = SUB_imperial_contracts_idea
+            add_equipment_to_stockpile = { type = support_equipment amount = 500 }
+        }
+    }
+
+    focus = {
+        id = SUB_standardize_garrisons
+        icon = GFX_goal_generic_military_sphere
+        prerequisite = { focus = SUB_sector_logistics }
+        x = 0
+        y = 3
+        cost = 7
+        relative_position_id = SUB_supply_war_machine
+        completion_reward = {
+            add_manpower = 1500
+            add_war_support = 0.03
+        }
+    }
+
+    # ============================================================
+    # BRANCH C – TECHNOLOGY & STANDARDS
+    # ============================================================
+    focus = {
+        id = SUB_unlock_starwars_tech
+        icon = GFX_goal_generic_technology
+        prerequisite = { focus = SUB_sector_governors }
+        x = 0
+        y = 1
+        cost = 8
+        relative_position_id = SUB_sector_governors
+        search_filters = { FOCUS_FILTER_RESEARCH }
+        completion_reward = {
+            set_country_flag = starwarstech_unlock
+            add_tech_bonus = { bonus = 0.5 uses = 1 category = electronics }
+            add_tech_bonus = { bonus = 0.5 uses = 1 category = industry }
+            add_tech_bonus = { bonus = 0.5 uses = 1 category = infantry_tech }
+        }
+        custom_effect_tooltip = IMP_TECH_UNCLOCK
+    }
+
+    focus = {
+        id = SUB_imperial_standards
+        icon = GFX_goal_generic_scientific_exchange
+        prerequisite = { focus = SUB_unlock_starwars_tech }
+        x = 0
+        y = 1
+        cost = 7
+        relative_position_id = SUB_unlock_starwars_tech
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+
+    focus = {
+        id = SUB_imperial_logistics_uplift
+        icon = GFX_goal_generic_construct_infrastructure
+        prerequisite = { focus = SUB_imperial_standards }
+        x = 0
+        y = 1
+        cost = 7
+        relative_position_id = SUB_imperial_standards
+        completion_reward = {
+            add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+            add_building_construction = { type = rail_way level = 1 instant_build = yes } # if using BBA railways; otherwise remove
+        }
+    }
+
+    # ============================================================
+    # BRANCH D – LIMITED AUTONOMY & CIVIL ORDER
+    # ============================================================
+    focus = {
+        id = SUB_negotiate_local_authority
+        icon = GFX_goal_generic_improve_relations
+        prerequisite = { focus = SUB_pledge_loyalty }
+        x = -2
+        y = 1
+        cost = 7
+        relative_position_id = SUB_pledge_loyalty
+        search_filters = { FOCUS_FILTER_STABILITY }
+        completion_reward = {
+            add_political_power = 50
+            add_stability = 0.03
+            add_autonomy_ratio = 0.03
+        }
+    }
+
+    focus = {
+        id = SUB_imperial_senate_delegation
+        icon = GFX_goal_generic_political_pressure
+        prerequisite = { focus = SUB_negotiate_local_authority }
+        x = 0
+        y = 1
+        cost = 7
+        relative_position_id = SUB_negotiate_local_authority
+        completion_reward = {
+            add_political_power = 75
+            add_stability = 0.02
+            add_autonomy_ratio = 0.02
+        }
+    }
+
+    focus = {
+        id = SUB_raise_local_defense
+        icon = GFX_goal_generic_army_doctrines
+        prerequisite = { focus = SUB_negotiate_local_authority }
+        x = 0
+        y = 2
+        cost = 7
+        relative_position_id = SUB_negotiate_local_authority
+        completion_reward = {
+            add_war_support = 0.05
+            add_autonomy_ratio = 0.02
+            create_unit = {
+                division_name = "Local Militia"
+                location = 0
+                force_equipment_variants = yes
+                division_template = {
+                    name = "Militia"
+                    regiments = {
+                        militia = { x = 0 y = 0 }
+                        militia = { x = 1 y = 0 }
+                        militia = { x = 2 y = 0 }
+                    }
+                }
+                owner = ROOT
+            }
+        }
+    }
+
+    focus = {
+        id = SUB_expand_regional_industry
+        icon = GFX_goal_generic_construct_civ_factory
+        prerequisite = { focus = SUB_imperial_senate_delegation focus = SUB_raise_local_defense }
+        x = 0
+        y = 3
+        cost = 8
+        relative_position_id = SUB_negotiate_local_authority
+        completion_reward = {
+            add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+            add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+            add_political_power = -25
+            add_ideas = SUB_imperial_contracts_idea
+        }
+    }
+
+    focus = {
+        id = SUB_balance_empire_and_people
+        icon = GFX_goal_generic_propaganda
+        prerequisite = { focus = SUB_expand_regional_industry }
+        x = 0
+        y = 4
+        cost = 8
+        relative_position_id = SUB_negotiate_local_authority
+        completion_reward = {
+            add_stability = 0.05
+            add_war_support = 0.02
+            add_autonomy_ratio = 0.03
+        }
+    }
+
+    # ============================================================
+    # BRANCH E – ECONOMY UNDER THE EMPIRE (TAX & EXTRACTION)
+    # ============================================================
+    focus = {
+        id = SUB_tribute_to_coruscant
+        icon = GFX_goal_generic_territory_or_war
+        prerequisite = { focus = SUB_pledge_loyalty }
+        x = -3
+        y = 0
+        cost = 5
+        relative_position_id = SUB_supply_war_machine
+        completion_reward = {
+            add_political_power = 25
+            add_ideas = SUB_tribute_to_coruscant_idea
+        }
+    }
+
+    focus = {
+        id = SUB_exploit_resources
+        icon = GFX_goal_generic_resources
+        prerequisite = { focus = SUB_tribute_to_coruscant }
+        x = -1
+        y = 1
+        cost = 7
+        relative_position_id = SUB_tribute_to_coruscant
+        completion_reward = {
+            country_event = IMP_SUBJECT.10
+            add_building_construction = { type = synthetic_refinery level = 1 instant_build = yes }
+        }
+    }
+
+    focus = {
+        id = SUB_imperial_contracts
+        icon = GFX_goal_generic_production
+        prerequisite = { focus = SUB_tribute_to_coruscant }
+        x = 1
+        y = 1
+        cost = 7
+        relative_position_id = SUB_tribute_to_coruscant
+        completion_reward = {
+            add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            add_ideas = SUB_imperial_contracts_idea
+        }
+    }
+
+    focus = {
+        id = SUB_forced_labor
+        icon = GFX_goal_generic_military_sphere
+        prerequisite = { focus = SUB_exploit_resources focus = SUB_imperial_contracts }
+        x = 0
+        y = 2.5
+        cost = 8
+        relative_position_id = SUB_tribute_to_coruscant
+        completion_reward = {
+            add_stability = -0.05
+            add_political_power = 25
+            add_ideas = SUB_forced_labor_idea
+        }
+    }
+
+}
+
+# Other files (ideas, scripted_triggers, events) remain the same, no change needed except they now implicitly apply to IMP overlord subjects.

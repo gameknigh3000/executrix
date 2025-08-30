@@ -1,0 +1,269 @@
+focus_tree = {
+    id = IMP_SUBJECT_generic
+
+    country = {
+        factor = 0
+        modifier = {
+            add = 10
+            is_subject = yes
+            overlord = { tag = IMP }
+        }
+    }
+
+    default = no
+
+    available = {
+        is_subject = yes
+        overlord = { tag = IMP }
+    }
+
+    focus = {
+        id = imp_sub_pledge_loyalty
+        icon = GFX_goal_generic_political_reform
+        x = 0
+        y = 0
+        cost = 5
+        search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+        completion_reward = {
+            add_political_power = 75
+            add_stability = 0.05
+            add_opinion_modifier = { target = overlord modifier = positive_opinion }
+        }
+    }
+
+    focus = {
+        id = imp_sub_imperial_advisors
+        icon = GFX_goal_generic_government
+        prerequisite = { focus = imp_sub_pledge_loyalty }
+        relative_position_id = imp_sub_pledge_loyalty
+        x = -2
+        y = 1
+        cost = 7
+        search_filters = { FOCUS_FILTER_POLITICAL }
+        completion_reward = {
+            add_political_power = 50
+            add_stability = -0.02
+            add_ideas = SUB_imperial_advisors_idea
+        }
+    }
+
+    focus = {
+        id = imp_sub_tarkin_doctrine
+        icon = GFX_goal_generic_intelligence
+        prerequisite = { focus = imp_sub_imperial_advisors }
+        relative_position_id = imp_sub_imperial_advisors
+        x = -1
+        y = 1
+        cost = 7
+        search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+        completion_reward = {
+            add_political_power = 50
+            add_ideas = SUB_tarkin_doctrine_idea
+        }
+    }
+
+    focus = {
+        id = imp_sub_provincial_admin
+        icon = GFX_goal_generic_construct_civ_factory
+        prerequisite = { focus = imp_sub_imperial_advisors }
+        relative_position_id = imp_sub_imperial_advisors
+        x = 1
+        y = 1
+        cost = 7
+        search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_CONSTRUCTION }
+        completion_reward = {
+            add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            add_stability = 0.02
+        }
+    }
+
+    focus = {
+        id = imp_sub_sector_governors
+        icon = GFX_goal_generic_political_pressure
+        prerequisite = { focus = imp_sub_tarkin_doctrine focus = imp_sub_provincial_admin }
+        relative_position_id = imp_sub_imperial_advisors
+        x = 0
+        y = 2
+        cost = 8
+        search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+        completion_reward = {
+            add_stability = 0.03
+            add_political_power = 50
+            add_autonomy_ratio = -0.02
+        }
+    }
+
+    focus = {
+        id = imp_sub_order_curfew
+        icon = GFX_goal_generic_military_sphere
+        prerequisite = { focus = imp_sub_tarkin_doctrine }
+        relative_position_id = imp_sub_tarkin_doctrine
+        x = 0
+        y = 1
+        cost = 7
+        search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+        completion_reward = {
+            add_stability = -0.03
+            add_war_support = 0.05
+        }
+    }
+
+    focus = {
+        id = imp_sub_imperial_tribute
+        icon = GFX_goal_generic_production
+        prerequisite = { focus = imp_sub_provincial_admin }
+        relative_position_id = imp_sub_provincial_admin
+        x = 0
+        y = 1
+        cost = 7
+        search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_PRODUCTION }
+        completion_reward = {
+            add_ideas = SUB_tribute_to_coruscant_idea
+        }
+    }
+
+    focus = {
+        id = imp_sub_unlock_imperial_rd
+        icon = GFX_goal_generic_technology
+        prerequisite = { focus = imp_sub_sector_governors }
+        relative_position_id = imp_sub_sector_governors
+        x = 0
+        y = 1
+        cost = 8
+        search_filters = { FOCUS_FILTER_RESEARCH }
+        completion_reward = {
+            set_country_flag = starwarstech_unlock
+            add_tech_bonus = { bonus = 0.5 uses = 1 category = electronics }
+            add_tech_bonus = { bonus = 0.5 uses = 1 category = industry }
+        }
+    }
+
+    focus = {
+        id = imp_sub_extraction_program
+        icon = GFX_goal_generic_resources
+        prerequisite = { focus = imp_sub_pledge_loyalty }
+        relative_position_id = imp_sub_pledge_loyalty
+        x = 2
+        y = 1
+        cost = 7
+        search_filters = { FOCUS_FILTER_INDUSTRY }
+        completion_reward = {
+            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            add_ideas = SUB_imperial_contracts_idea
+        }
+    }
+
+    focus = {
+        id = imp_sub_shipyards
+        icon = GFX_goal_generic_construct_naval_dockyard
+        prerequisite = { focus = imp_sub_extraction_program }
+        relative_position_id = imp_sub_extraction_program
+        x = -1
+        y = 1
+        cost = 7
+        search_filters = { FOCUS_FILTER_NAVY FOCUS_FILTER_INDUSTRY }
+        completion_reward = {
+            add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            add_equipment_to_stockpile = { type = convoys amount = 50 }
+        }
+    }
+
+    focus = {
+        id = imp_sub_refinery_expansion
+        icon = GFX_goal_generic_construct_infrastructure
+        prerequisite = { focus = imp_sub_extraction_program }
+        relative_position_id = imp_sub_extraction_program
+        x = 1
+        y = 1
+        cost = 7
+        search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_CONSTRUCTION }
+        completion_reward = {
+            add_building_construction = { type = synthetic_refinery level = 1 instant_build = yes }
+        }
+    }
+
+    focus = {
+        id = imp_sub_droid_foundries
+        icon = GFX_goal_generic_production
+        prerequisite = { focus = imp_sub_shipyards focus = imp_sub_refinery_expansion }
+        relative_position_id = imp_sub_extraction_program
+        x = 0
+        y = 2
+        cost = 8
+        search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_PRODUCTION }
+        completion_reward = {
+            add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+        }
+    }
+
+    focus = {
+        id = imp_sub_prospect_deposits
+        icon = GFX_goal_generic_occupy_states
+        prerequisite = { focus = imp_sub_droid_foundries }
+        relative_position_id = imp_sub_droid_foundries
+        x = 0
+        y = 1
+        cost = 8
+        search_filters = { FOCUS_FILTER_INDUSTRY }
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT }
+                random_list = {
+                    25 = { add_resource = { type = steel     amount = 6 } }
+                    20 = { add_resource = { type = aluminium amount = 4 } }
+                    20 = { add_resource = { type = oil       amount = 2 } }
+                    20 = { add_resource = { type = rubber    amount = 4 } }
+                    10 = { add_resource = { type = tungsten  amount = 3 } }
+                    5  = { add_resource = { type = chromium  amount = 2 } }
+                }
+            }
+        }
+    }
+
+    focus = {
+        id = imp_sub_logistics_grid
+        icon = GFX_goal_generic_construct_infrastructure
+        prerequisite = { focus = imp_sub_droid_foundries }
+        relative_position_id = imp_sub_droid_foundries
+        x = -1
+        y = 2
+        cost = 7
+        search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_CONSTRUCTION }
+        completion_reward = {
+            add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+            add_building_construction = { type = railway level = 1 instant_build = yes }
+        }
+    }
+
+    focus = {
+        id = imp_sub_quality_standards
+        icon = GFX_goal_generic_scientific_exchange
+        prerequisite = { focus = imp_sub_droid_foundries }
+        relative_position_id = imp_sub_droid_foundries
+        x = 1
+        y = 2
+        cost = 7
+        search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5 uses = 1 category = construction_tech }
+            add_tech_bonus = { bonus = 0.5 uses = 1 category = electronics }
+        }
+    }
+
+    focus = {
+        id = imp_sub_orbital_supply_lanes
+        icon = GFX_goal_generic_aviation_effort
+        prerequisite = { focus = imp_sub_logistics_grid focus = imp_sub_quality_standards }
+        relative_position_id = imp_sub_droid_foundries
+        x = 0
+        y = 3
+        cost = 9
+        search_filters = { FOCUS_FILTER_NAVY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_INDUSTRY }
+        completion_reward = {
+            add_equipment_to_stockpile = { type = convoys amount = 100 }
+            add_war_support = 0.03
+        }
+    }
+}

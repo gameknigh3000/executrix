@@ -1,0 +1,58 @@
+Ideas = {
+country= {
+    SUB_imperial_advisors_idea = {
+        allowed = { always = yes }
+        picture = idea_political_advisor
+        modifier = {
+            political_power_gain = 0.05
+            stability_factor = -0.02
+        }
+    }
+    SUB_tarkin_doctrine_idea = {
+        allowed = { always = yes }
+        picture = idea_police
+        modifier = {
+            resistance_growth_on_our_occupied_states = -0.05
+            required_garrisons_factor = -0.1
+            compliance_growth_on_our_occupied_states = 0.02
+        }
+    }
+    SUB_tribute_to_coruscant_idea = {
+        allowed = { always = yes }
+        picture = idea_trade
+        modifier = {
+            consumer_goods_factor = 0.02
+        }
+    }
+    SUB_imperial_contracts_idea = {
+        allowed = { always = yes }
+        picture = idea_military_industry
+        modifier = {
+            military_factory_speed = 0.1
+        }
+    }
+
+    SUB_rd_grant_idea = {
+        allowed = { always = yes }
+        picture = idea_research
+        modifier = {
+            research_speed_factor = 0.10
+        }
+    }
+    SUB_rd_payment_idea = {
+        allowed = { always = yes }
+        picture = idea_trade
+        modifier = {
+            consumer_goods_factor = 0.03
+        }
+    }
+    SUB_quality_standards_idea = {
+        allowed = { always = yes }
+        picture = idea_military_industry
+        modifier = {
+            production_factory_max_efficiency_factor = 0.05
+            line_change_production_efficiency_factor = -0.15
+        }
+    }
+}
+}

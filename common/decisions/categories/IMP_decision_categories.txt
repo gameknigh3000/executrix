@@ -84,3 +84,13 @@ IMP_turkey_core_decisions = {
 		has_completed_focus = imp_begin_intergrating_turkey
 	}
 }
+IMP_Subject_decisions = {
+	icon = generic_propaganda
+
+	allowed = { 
+		NOT = { original_tag = IMP }
+	}
+	visible = {
+		has_government = imperialism
+	}
+}
